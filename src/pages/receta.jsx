@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ListaIngredientes from "../components/receta/Lista";
-import { RecetaProvider } from "../contexts/RecetaContext";
+import { RecetaProvider, useProductos } from "../contexts/RecetaContext";
 import { Container, Typography, Alert } from "@mui/material";
 
 function RecetaPage() {

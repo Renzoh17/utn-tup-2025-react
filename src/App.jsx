@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 import RecetaPage from './pages/receta'
 import ObjectsPage from './pages/objects'
+import RecetasPage from './pages/recetas'
+import RecetasDetailPage from './pages/RecetaDetailPage'
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
           <Route path="/" element={<ObjectsPage />} />
           <Route path="/objects" element={<ObjectsPage />} />
           <Route path="/receta" element={<RecetaPage />} />
+          <Route path="/recetas" element={<RecetasPage/>}/>
+          <Route path="/recetas/:id" element={<RecetasDetailPage/>}/>
         </Routes>
       </div>
     </Router>
