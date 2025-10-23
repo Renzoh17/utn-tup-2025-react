@@ -1,5 +1,3 @@
-// src/pages/RecetaDetailPage.jsx (CORREGIDO)
-import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Typography, Grid, CircularProgress, Alert, Card, CardMedia, CardContent, Box, List, ListItem, ListItemText, Divider, Button, Chip } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -8,26 +6,19 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // Importamos ambos, el Provider y el hook, desde el Contexto
 import { RecetasProvider, useRecetas } from '../contexts/RecetasContext'; 
-import { useEffect } from 'react';
 
 // --- 1. Componente que CONSUME el Contexto (Contenido real de la página) ---
 function RecetaDetailContent() {
     
     // Obtener el ID de la URL
     const { id } = useParams();
-    const [ receta, setReceta ] = useState(null);
 
     // Obtener los datos y estados del contexto (REQUIERE ESTAR DENTRO DEL PROVIDER)
     const { recetas, loading, error } = useRecetas(); 
     const navigate = useNavigate();
 
     // 1. Lógica para encontrar la receta específica
-    //const receta = recetas.find(r => r.id === id);
-    useEffect(() =>{
-        const r = recetas.find(r => r.id === id);
-        console.log("receta .... " + recetas)
-        setReceta(r);
-    },[]);
+    const receta = recetas.find(r => r.id == id);
 
     // --- Módulos de Estado y Error del Contexto ---
     if (loading) {
@@ -89,7 +80,7 @@ function RecetaDetailContent() {
             
             <Grid container spacing={4}>
                 {/* Columna de Imagen y Título */}
-                <Grid item xs={12} md={6}>
+                <Grid size={{xs: 12, md:6 }}>
                     <Card raised>
                         <CardMedia
                             component="img"
@@ -131,14 +122,14 @@ function RecetaDetailContent() {
                 </Grid>
 
                 {/* Columna de Ingredientes y Proceso */}
-                <Grid item xs={12} md={6}>
+                <Grid size={{xs: 12, md:6 }}>
                     <Box mb={4}>
                         <Typography variant="h5" component="h2" gutterBottom>
                             Lista de Ingredientes
                         </Typography>
-                        <List dense>
+                        <List dense component="ul" sx={{ listStyleType: 'disc', pl: 4 }}>
                             {(receta.ingredientes || []).map((ing, index) => (
-                                <ListItem key={index} disablePadding>
+                                <ListItem key={index} disablePadding sx={{ display: 'list-item' }}>
                                     <ListItemText 
                                         primary={`${ing.cantidad} ${ing.nombre}`}
                                         secondary={ing.unidadMedida || ""}
@@ -154,12 +145,12 @@ function RecetaDetailContent() {
                             Proceso de Preparación
                         </Typography>
                         <List>
-                            {(receta.instrucciones || []).map((paso, index) => (
+                            {(receta.pasos || []).map((paso, index) => (
                                 <ListItem key={index} disableGutters>
                                     <ListItemText 
                                         primary={`Paso ${index + 1}`}
                                         secondary={paso} 
-                                        primaryTypographyProps={{ fontWeight: 'bold' }}
+                                        slotProps={{ primary: { sx: { fontWeight: 'bold' } } }}
                                     />
                                 </ListItem>
                             ))}

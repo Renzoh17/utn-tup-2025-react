@@ -61,27 +61,39 @@ function RecetaCard({ receta, onVerReceta }) {
             {receta.porciones} porciones
           </Typography>
         </Box>
-        <Chip 
-          label={receta.dificultad} 
-          color={getDificultadColor(receta.dificultad)} 
-          size="small" 
-          sx={{ mt: 1 }} 
-        />
       </CardContent>
-      <CardActions sx={{ mt: 'auto' }}> {/* Empuja las acciones a la parte inferior */}
-        <Button 
-          size="small" 
-          variant="contained" 
-          onClick={() => onVerReceta(receta.id)}
-          sx={{ flexGrow: 1, mr: 1 }}
-        >
-          Ver Receta
-        </Button>
-        {/* Un botón de ejemplo, puedes añadir más */}
-        <Button size="small" variant="outlined" color="secondary">
-          <FavoriteBorderIcon />
-        </Button>
-      </CardActions>
+      <Box sx={{ p: 2, pt: 0, mt: 'auto' }}> 
+          
+          {/* 3. El Chip de Dificultad va aquí (arriba de los botones) */}
+          <Chip 
+              label={receta.dificultad} 
+              color={getDificultadColor(receta.dificultad)} 
+              size="small" 
+              sx={{ mb: 1 }} // Margen inferior para separarse del botón
+          />
+
+          {/* 4. CardActions contiene los botones y se mantiene debajo del chip */}
+          <CardActions 
+              sx={{ 
+                  p: 0, // Remover padding interno para que se alinee con el Box
+                  justifyContent: 'space-between', 
+                  alignItems: 'center',
+              }}
+          >
+              <Button 
+                  size="small" 
+                  variant="contained" 
+                  onClick={() => onVerReceta(receta.id)}
+                  sx={{ flexGrow: 1, mr: 1 }}
+              >
+                  Ver Receta
+              </Button>
+
+              <Button size="small" variant="outlined" color="secondary">
+                  <FavoriteBorderIcon />
+              </Button>
+          </CardActions>
+      </Box>
     </Card>
   );
 }

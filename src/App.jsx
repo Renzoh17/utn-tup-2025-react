@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 import RecetaPage from './pages/receta'
 import ObjectsPage from './pages/objects'
-import RecetasPage from './pages/recetas'
+import RecetasPage from './pages/RecetasPage'
 import RecetasDetailPage from './pages/RecetaDetailPage'
 
 function App() {
@@ -31,6 +31,7 @@ function App() {
           <Link 
             to="/receta"
             style={{ 
+              marginRight: '20px',
               textDecoration: 'none',
               padding: '8px 16px',
               backgroundColor: '#28a745',
@@ -39,6 +40,18 @@ function App() {
             }}
           >
             Receta
+          </Link>
+          <Link 
+            to="/recetas"
+            style={{ 
+              textDecoration: 'none',
+              padding: '8px 16px',
+              backgroundColor: 'red',
+              color: 'white',
+              borderRadius: '4px'
+            }}
+          >
+          Recetas  
           </Link>
         </nav>
         

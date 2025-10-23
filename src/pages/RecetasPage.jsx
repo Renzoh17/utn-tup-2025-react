@@ -1,14 +1,13 @@
-// src/pages/RecetasPage.jsx (VERSIÓN CORREGIDA)
 
 import { Container, Typography, Grid, CircularProgress, Alert } from '@mui/material';
 import RecetaCard from '../components/recetas/RecetaCard';
 import { RecetasProvider, useRecetas } from '../contexts/RecetasContext';
 import { useNavigate } from 'react-router-dom'; 
 
-// 1. Componente interno que CONSUME los datos (tu código actual)
 function RecetasContent() {
     const { recetas, loading, error } = useRecetas(); 
     const navigate = useNavigate();
+
 
     const handleVerReceta = (id) => {
       navigate(`/recetas/${id}`);
@@ -48,7 +47,7 @@ function RecetasContent() {
         
         <Grid container spacing={4}>
           {recetas.map((receta) => (
-            <Grid item key={receta.id} xs={12} sm={6} md={4} lg={3}>
+            <Grid key={receta.id} size={{xs: 12, sm:6, md:4, lg:3}}>
               <RecetaCard 
                 receta={receta} 
                 onVerReceta={handleVerReceta} 

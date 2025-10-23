@@ -74,14 +74,3 @@ export const useRecetas = () => {
     return context;
 };
 
-/*
-// --- Comentario Alternativo para datos estáticos en 'src' ---
-// Si tu archivo 'recetas.json' está en 'src/data/recetas.json' (y lo quieres cargar sin fetch):
-import recetasData from '../data/recetas.json'; 
-
-useEffect(() => {
-    setRecetas(recetasData);
-    setLoading(false);
-}, []);
-
-*/
